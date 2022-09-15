@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS ecommerce_db;
-CREATE DATABASE ecommerce_db;
-USE ecommerce_db;
+DROP DATABASE IF EXISTS employeetracker_db;
+CREATE DATABASE employeetracker_db;
+USE employeetracker_db;
 
 CREATE TABLE employees (
   id INT(11) NOT NULL AUTO_INCREMENT 

@@ -16,8 +16,7 @@ connection.connect((err) => {
 });
 
 function runSearch() {
-inquirer
-  .prompt({
+inquirer.prompt({
     name: "selection",
     type: "list",
     message: "What would you like to do?",
