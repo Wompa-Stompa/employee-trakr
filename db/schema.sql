@@ -1,26 +1,31 @@
-DROP DATABASE IF EXISTS employeetracker_db;
-CREATE DATABASE employeetracker_db;
-USE employeetracker_db;
+DROP DATABASE IF EXISTS ecommerce_db;
+CREATE DATABASE ecommerce_db;
+USE ecommerce_db;
 
-CREATE TABLE employees (
-  id INT(11) NOT NULL AUTO_INCREMENT 
-  PRIMARY KEY,
-  firstName VARCHAR (30),
-  lastName VARCHAR (30),
-  roleID INT,
-  managerID INT
-);
+DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS departments;
+
 
 CREATE TABLE department (
-  id INT(11) 
-  PRIMARY KEY,
-  name VARCHAR (30)
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    dept_name VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE role (
-  id INT(11) AUTO_INCREMENT 
-  PRIMARY KEY,
-  title VARCHAR (30),
-  salary DECIMAL(9,2),
-  departmentID INT
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(30) NOT NULL,
+    salary INTEGER NOT NULL,
+    department_id INTEGER,
+    CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE SET NULL
+);
+
+CREATE TABLE employee (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INTEGER,
+    manager_id INTEGER,
+    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
+    FOREIGN KEY (manager_id) REFERENCES employees(id) ON DELETE SET NULL
 );
